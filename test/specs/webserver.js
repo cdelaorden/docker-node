@@ -13,13 +13,13 @@ describe('Web Server', function() {
         browser.url('/redis');
         let body = browser.getText('body');
         console.log(body);
-        assert(true);
+        assert(/redis/i.test(body));
     });
 
     it('Returns the MySQL value on /mysql', () => {
         browser.url('/mysql');
         let body = browser.getText('body');
         console.log(body);
-        assert(true);
+        assert(/mysql/i.test(body));
     });
 });

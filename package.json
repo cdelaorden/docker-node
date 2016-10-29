@@ -6,7 +6,9 @@
   "scripts": {
     "start": "echo Hello World!",
     "test": "bin/e2e.sh",
-    "test:e2e": "wdio wdio.conf.js"
+    "test:e2e": "wdio wdio.conf.js",
+    "sql:schema": "bin/dump_sql_schema.sh",
+    "sql:dump": "bin/dump_sql.sh"
   },
   "keywords": [],
   "author": "",

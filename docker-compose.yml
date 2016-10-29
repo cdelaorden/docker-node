@@ -1,9 +1,17 @@
 version: '2'
 services:    
-  boot:
-    image: busybox
-    depends_on: 
-      - app
+  # boot:
+  #  image: busybox
+  #  command: echo Your app is listening at localhost:3000
+  #  depends_on: 
+  #    - app
+
+  selenium:
+    image: selenium/standalone-chrome:2.53.0
+    links:
+     - app
+    ports:
+      - "4444:4444"
 
   app:
     build: 
@@ -21,6 +29,8 @@ services:
 
   redis:
     image: redis
+    volumes:
+      - ./data:/data
     ports:
       - "6379"
 
@@ -31,11 +41,6 @@ services:
       dockerfile: dockerfiles/Dockerfile-mysql    
     volumes:
       - ./data:/var/lib/mysql
-
-  selenium:
-    image: selenium/standalone-chrome:2.53.0
-    links:
-     - app
-    ports:
-      - "4444:4444"
+      - ./backup:/backup
+  
     
