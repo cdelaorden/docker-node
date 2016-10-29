@@ -1,19 +1,26 @@
 version: '2'
-services:
+services:  
   app:
     build: 
       context: .
-      dockerfile: dockerfiles/web/Dockerfile
+      dockerfile: dockerfiles/Dockerfile-web
     volumes:
       - .:/opt/app
     working_dir: /opt/app/
     command: bash -c "npm install && nodemon"
     links:
       - redis
+      - mysql
     ports:
-      - "8000:8000"
+      - "3000:3000"
 
   redis:
     image: redis
     ports:
       - "6379"
+
+  mysql:
+    env_file: .env
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile-mysql    
