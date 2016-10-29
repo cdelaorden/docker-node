@@ -24,3 +24,6 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile-mysql    
+    volumes:
+      - ./data:/var/lib/mysql
+    
