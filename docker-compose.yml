@@ -1,0 +1,19 @@
+version: '2'
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: dockerfiles/web/Dockerfile
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app/
+    command: bash -c "npm install && nodemon"
+    links:
+      - redis
+    ports:
+      - "8000:8000"
+
+  redis:
+    image: redis
+    ports:
+      - "6379"
