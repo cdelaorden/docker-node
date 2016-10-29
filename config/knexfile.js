@@ -1,5 +1,5 @@
 module.exports = {  
-    client: 'mysql',
+    client: 'mysql',    
     connection: {
       host: process.env.MYSQL_HOST || 'mysql',
       database: process.env.MYSQL_DATABASE || 'counter',
