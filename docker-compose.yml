@@ -1,5 +1,10 @@
 version: '2'
-services:  
+services:    
+  boot:
+    image: busybox
+    depends_on: 
+      - app
+
   app:
     build: 
       context: .
@@ -26,4 +31,11 @@ services:
       dockerfile: dockerfiles/Dockerfile-mysql    
     volumes:
       - ./data:/var/lib/mysql
+
+  selenium:
+    image: selenium/standalone-chrome:2.53.0
+    links:
+     - app
+    ports:
+      - "4444:4444"
     
