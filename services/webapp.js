@@ -9,17 +9,19 @@ function WebAppFactory(httpConfig, CounterService, SQLCounterService){
     next();
   })
 
-  app.get('/', (req, res) => res.send('Hi! Try /redis and /mysql routes'));
+  app.get('/', function(req, res) {
+    res.send('Hi! Try <a href="/redis">Redis</a> and <a href="/mysql">MySQL</a> routes')
+  });
 
   app.get('/redis', function(req, res){
-    CounterService.increment().then(value => {
-      res.send(`REDIS value is ${value}`).end();
+    CounterService.increment().then(function(value){
+      res.send('REDIS value is ' + value).end();
     });
   });
 
   app.get('/mysql', function(req, res){
-    SQLCounterService.increment().then(value => {
-      res.send(`MySQL value is  ${value}`).end();
+    SQLCounterService.increment().then(function(value){
+      res.send('MySQL value is  ' + value).end();
     })
   });
 
@@ -30,13 +32,10 @@ function WebAppFactory(httpConfig, CounterService, SQLCounterService){
     });
   }
 
-
   return {
-    start,
-    app
+    start: start,
+    app: app
   }
-
-
 }
 
 module.exports = WebAppFactory;

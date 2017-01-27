@@ -13,11 +13,11 @@ kontainer.register('knex', ['knexConfig'], require('../services/knex'));
 kontainer.register('redis', [], require('redis'));
 
 //app services
-kontainer.register('counterService', ['redisConfig', 'redis'], require('../services/counter'));
-kontainer.register('sqlCounterService', ['knex'], require('../services/mysql_counter'));
+kontainer.register('RedisCounterService', ['redisConfig', 'redis'], require('../services/redis_counter'));
+kontainer.register('MySQLCounterService', ['knex'], require('../services/mysql_counter'));
 
 //app microservices
-kontainer.register('webapp', ['expressConfig', 'counterService', 'sqlCounterService'], require('../services/webapp'));
+kontainer.register('webapp', ['expressConfig', 'RedisCounterService', 'MySQLCounterService'], require('../services/webapp'));
 
 
 module.exports = kontainer;

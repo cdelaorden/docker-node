@@ -1,25 +1,27 @@
 function MySQLCounterServiceFactory(knex){
 
   function increment(){
-    return updateValue().then((affRows) => {      
+    return updateValue().then(function(affRows){
       return getValue();
     });
   }
 
-  function updateValue(){    
+  function updateValue(){
     return knex('counter')
       .update({
         value: knex.raw('value + 1')
-      });      
+      });
   }
 
   function getValue(){
     return knex('counter').first('value')
-      .then(row => row.value);
+      .then(function(row) {
+        return row.value
+      });
   }
 
   return {
-    increment
+    increment: increment
   }
 
 }

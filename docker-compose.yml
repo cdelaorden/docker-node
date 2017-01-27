@@ -1,9 +1,9 @@
 version: '2'
-services:    
+services:
   # boot:
   #  image: busybox
   #  command: echo Your app is listening at localhost:3000
-  #  depends_on: 
+  #  depends_on:
   #    - app
 
   selenium:
@@ -14,13 +14,13 @@ services:
       - "4444:4444"
 
   app:
-    build: 
+    build:
       context: .
       dockerfile: dockerfiles/Dockerfile-web
     volumes:
       - .:/opt/app
     working_dir: /opt/app/
-    command: bash -c "npm install && nodemon"
+    command: bash -c "npm install && nodemon --ignore ./test"
     links:
       - redis
       - mysql
@@ -38,9 +38,9 @@ services:
     env_file: .env
     build:
       context: .
-      dockerfile: dockerfiles/Dockerfile-mysql    
+      dockerfile: dockerfiles/Dockerfile-mysql
     volumes:
       - ./data:/var/lib/mysql
       - ./backup:/backup
-  
-    
+
+

@@ -1,4 +1,4 @@
 var kontainer = require('./config/kontainer');
-
-kontainer.start('counterService');
+global.Promise || (global.Promise = require('bluebird'))
+//kontainer.start('counterService');
 kontainer.start('webapp');
