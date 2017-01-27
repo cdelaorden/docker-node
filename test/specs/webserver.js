@@ -8,7 +8,12 @@ describe('Web Server', function() {
         console.log(body);
         assert.equal(true, /Hi! Try/.test(body));
         let tags = browser.getTagName('a')
-        assert.equal(browser.getAttribute('a:first', 'href'), '/redis')
+        assert.equal(tags.length, 2, 'Two links are displayed')
+
+        let redisLink = browser.getText('=Redis')
+        assert.ok(redisLink)
+        let mysqlLink = browser.getText('=MySQL')
+        assert.ok(mysqlLink)
 
     });
 
