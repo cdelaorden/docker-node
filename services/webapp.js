@@ -15,13 +15,13 @@ function WebAppFactory(httpConfig, CounterService, SQLCounterService){
 
   app.get('/redis', function(req, res){
     CounterService.increment().then(function(value){
-      res.send('REDIS value is ' + value).end();
+      res.send('REDIS value is <span class="value">' + value + '</span>').end();
     });
   });
 
   app.get('/mysql', function(req, res){
     SQLCounterService.increment().then(function(value){
-      res.send('MySQL value is  ' + value).end();
+      res.send('MySQL value is <span class="value">' + value + '</span>').end();
     })
   });
 
