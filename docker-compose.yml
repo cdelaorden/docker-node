@@ -6,13 +6,6 @@ services:
   #  depends_on:
   #    - app
 
-  selenium:
-    image: selenium/standalone-chrome:2.53.0
-    links:
-     - app
-    ports:
-      - "4444:4444"
-
   app:
     build:
       context: .
@@ -42,5 +35,12 @@ services:
     volumes:
       - ./data:/var/lib/mysql
       - ./backup:/backup
+
+  selenium:
+    image: selenium/standalone-chrome:2.53.0
+    links:
+     - app
+    ports:
+      - "4444:4444"
 
 
